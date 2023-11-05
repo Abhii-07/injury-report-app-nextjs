@@ -49,24 +49,22 @@ exports.deleteReport = async (req, res) => {
 exports.editReport = async (req, res) => {
   try {
     const reportId = req.params.id;
-    const { reporterName, dateOfInjuryStart, dateOfInjuryEnd, dateOfReport, bodyMapAreas } = req.body;
+    const { reporterName, dateOfInjuryStart, dateOfInjuryEnd } = req.body;
 
-    // Find the report by ID
-    const report = await Report.findById(reportId);
+    // Use findByIdAndUpdate to find and update the report by ID
+    const updatedReport = await Report.findByIdAndUpdate(
+      reportId,
+      {
+        reporterName,
+        dateOfInjuryStart,
+        dateOfInjuryEnd,
+      },
+      { new: true } // This option returns the updated document
+    );
 
-    if (!report) {
+    if (!updatedReport) {
       return res.status(404).json({ message: 'Report not found' });
     }
-
-    // Update the report fields
-    report.reporterName = reporterName;
-    report.dateOfInjuryStart = dateOfInjuryStart;
-    report.dateOfInjuryEnd = dateOfInjuryEnd;
-    report.dateOfReport = dateOfReport;
-    report.bodyMapAreas = bodyMapAreas;
-
-    // Save the updated report
-    const updatedReport = await report.save();
 
     res.status(200).json(updatedReport);
   } catch (error) {
