@@ -89,7 +89,7 @@ const InjuryReportingComponent = () => {
   
       // Send a POST request to your backend server using Axios
       axios
-        .post('http://localhost:3030/reports', formattedReport)
+        .post('https://my-app-4psy.onrender.com/reports', formattedReport)
         .then((response) => {
           console.log('Injury Report saved successfully.');
           message.success('Injury Report saved successfully');

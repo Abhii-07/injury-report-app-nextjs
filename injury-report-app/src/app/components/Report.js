@@ -80,7 +80,7 @@ const Report = () => {
 
     const fetchData = () => {
         axios
-            .get('http://localhost:3030/reports')
+            .get('https://my-app-4psy.onrender.com/reports')
             .then((response) => {
                 const formattedData = response.data.map((report) => ({
                     key: report._id,
@@ -133,7 +133,7 @@ const Report = () => {
         console.log('Edited Record:', editRecord); // Log the edited record object
 
         axios
-            .put(`http://localhost:3030/reports/${editRecord.key}`, editedReport) // Use the key from the state variable
+            .put(`https://my-app-4psy.onrender.com/reports/${editRecord.key}`, editedReport) // Use the key from the state variable
             .then((response) => {
                 console.log('Report edited successfully:', response.data);
                 message.success('Report saved successfully');
@@ -156,7 +156,7 @@ const Report = () => {
 
         if (dates.length === 0) {
             axios
-                .get('http://localhost:3030/reports')
+                .get('https://my-app-4psy.onrender.com/reports')
                 .then((response) => {
                     const formattedData = response.data.map((report) => ({
                         key: report._id,
@@ -173,7 +173,7 @@ const Report = () => {
                 });
         } else {
             axios
-                .get(`http://localhost:3030/reports?startDate=${dates[0].format('YYYY-MM-DD')}&endDate=${dates[1].format('YYYY-MM-DD')}`)
+                .get(`https://my-app-4psy.onrender.com/reports?startDate=${dates[0].format('YYYY-MM-DD')}&endDate=${dates[1].format('YYYY-MM-DD')}`)
                 .then((response) => {
                     const formattedData = response.data.map((report) => ({
                         key: report._id,
@@ -192,7 +192,7 @@ const Report = () => {
 
     const handleDelete = (key) => {
         axios
-            .delete(`http://localhost:3030/reports/${key}`)
+            .delete(`https://my-app-4psy.onrender.com/reports/${key}`)
             .then((response) => {
                 if (response.status === 200) {
                     console.log('Report deleted successfully:', response.data);
