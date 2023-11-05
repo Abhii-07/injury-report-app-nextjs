@@ -1,0 +1,28 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.0.1",
+    "@clerk/nextjs": "^4.26.2",
+    "antd": "^5.10.3",
+    "axios": "^1.6.0",
+    "chart.js": "^4.4.0",
+    "cors": "^2.8.5",
+    "firebase": "^10.5.2",
+    "moment": "^2.29.4",
+    "react-chartjs-2": "^5.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.0.1"    
+  }
+}
