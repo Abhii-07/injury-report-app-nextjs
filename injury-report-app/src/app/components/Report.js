@@ -15,7 +15,7 @@ const Report = () => {
     const [loading, setLoading] = useState(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [open, setOpen] = useState(false);
-    const [editRecord, setEditRecord] = useState(null); // Define a state variable to store the record being edited
+    const [editRecord, setEditRecord] = useState(null); 
     const [editedReport, setEditedReport] = useState(null);
 
     const columns = [
@@ -59,7 +59,6 @@ const Report = () => {
             key: 'actions',
             render: (_, record) => (
                 <Space size="middle">
-                    {/* <Button onClick={() => handleEdit(record)}>Edit</Button> */}
                     <>
                         <Button type="primary" onClick={() => handleEdit(record)} >
                             Edit
@@ -87,6 +86,9 @@ const Report = () => {
                     key: report._id,
                     reporterName: report.reporterName,
                     dateOfInjuryStart: report.dateOfInjuryStart,
+                    dateOfInjuryEnd: report.dateOfInjuryEnd,
+                    dateOfReport: report.dateOfReport,
+                    bodyMapAreas: report.bodyMapAreas,
                 }));
                 setFilteredData(formattedData);
             })
@@ -111,18 +113,14 @@ const Report = () => {
 
 
     const handleEdit = (record) => {
-        // Log the entire record
-        console.log('Editing record:', record);
+        console.log('default record:', record);
 
-        // Set the modal visibility to true
         setEditModalVisible(true);
         setEditedReport(record);
         setEditRecord(record);
 
-        // Set the open variable to true
         setOpen(true);
     };
-
 
 
     const handleSaveEdit = () => {
@@ -130,23 +128,31 @@ const Report = () => {
             console.error('No record to edit.');
             return;
         }
-
-        console.log('Edited Record:', editRecord); // Log the edited record object
-
+    
+        console.log('Edited Record:', editRecord);
+    
+        const updatedReport = {
+            ...editRecord,  
+            ...editedReport, 
+        };
+    
+        console.log('Updated Report:', updatedReport); 
+    
         axios
-            .put(`https://my-app-4psy.onrender.com/reports/${editRecord.key}`, editedReport) // Use the key from the state variable
+            .put(`https://my-app-4psy.onrender.com/reports/${editRecord.key}`, updatedReport)
             .then((response) => {
                 console.log('Report edited successfully:', response.data);
                 message.success('Report saved successfully');
                 setOpen(false);
-
-                fetchData()
+    
+                fetchData();
             })
             .catch((error) => {
                 console.error('Error editing report:', error);
                 message.error('Failed to edit report');
             });
     };
+    
 
 
 

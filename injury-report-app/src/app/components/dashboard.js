@@ -64,11 +64,6 @@ const Dashboard = () => {
                     />
 
                 </div>
-                {/* <div className="user-profile">
-                    <Dropdown overlay={userMenu} placement="bottomRight">
-                        <Avatar size={32} icon={<UserOutlined />} />
-                    </Dropdown>
-                </div> */}
                 <UserButton afterSignOutUrl="/" />
             </Header>
 

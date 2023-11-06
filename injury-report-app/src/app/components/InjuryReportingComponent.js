@@ -52,7 +52,6 @@ const InjuryReportingComponent = () => {
   
     setCircles([...circles, newCircle]);
   
-    // Create a new injury area with default values
     setInjuryAreas([...injuryAreas, { label: `Area ${circles.length + 1}`, location: '', details: '' }]);
   };
   
@@ -91,13 +90,11 @@ const InjuryReportingComponent = () => {
   
       console.log('Injury Report Data:', formattedReport);
   
-      // Send a POST request to your backend server using Axios
       axios
         .post('https://my-app-4psy.onrender.com/reports', formattedReport)
         .then((response) => {
           console.log('Injury Report saved successfully.');
           message.success('Injury Report saved successfully');
-          // Reset the form fields
           setName('');
           setInjuryDate(null);
           setInjuryAreas([]);
@@ -105,7 +102,6 @@ const InjuryReportingComponent = () => {
         })
         .catch((error) => {
           console.error('Failed to save Injury Report:', error);
-          // You can add code here to handle errors, like showing an error message.
         });
     }
   };
