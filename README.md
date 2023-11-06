@@ -2,6 +2,9 @@
 
 The Injury Report System is a robust and user-friendly application designed to streamline the process of reporting injuries. It caters to the needs of various organizations and individuals who need a convenient and efficient way to document and manage injuries. Whether you're in a workplace, sports organization, or healthcare facility, this system provides a solution for injury reporting and tracking.
 
+## Detailed Docs 
+- Link - https://docs.google.com/document/d/1N7OnbUe8l3gMeyLLfVJX4Syq8kvvkN05wr1nnIxXzWE/edit?usp=sharing
+
 ## Features 🚀
 
 - **User-Friendly Injury Reporting**: Easily report injuries with a user-friendly interface.
