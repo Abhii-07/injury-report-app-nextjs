@@ -36,7 +36,7 @@ const userMenu = (
     </Menu>
 );
 
-const Home = () => {
+const Dashboard = () => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -126,4 +126,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Dashboard;

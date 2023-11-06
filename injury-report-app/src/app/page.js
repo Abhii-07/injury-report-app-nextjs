@@ -1,12 +1,12 @@
 "use client"
 
 // import { UserButton } from "@clerk/nextjs";
-import Home from "../app/components/home"
+import Dashboard from "../app/components/dashboard"
  
 export default function App() {
   return (
     <div>
-      <Home/>
+      <Dashboard/>
     </div>
   )
 }
