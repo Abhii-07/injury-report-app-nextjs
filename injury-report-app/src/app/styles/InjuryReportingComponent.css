@@ -1,0 +1,49 @@
+/* Default styles for larger screens */
+.injury-report-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Adjust styles for smaller screens (e.g., tablets) */
+  @media (max-width: 768px) {
+    .injury-report-container {
+      width: 80%;
+    }
+  }
+  
+  /* Adjust styles for even smaller screens (e.g., mobile phones) */
+  @media (max-width: 480px) {
+    .injury-report-container {
+      width: 100%;
+    }
+  }
+  
+  /* InjuryReportingComponent.css */
+
+/* Center the card and limit its width */
+.report-card {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+.body-map-container {
+  /* border: 1px solid blue; */
+  position: relative;
+  max-width: 100%; 
+  margin: 0 auto;
+}
+
+.body-map {
+  
+  width: 100%;
+  height: auto;
+}
+
+.canvas {
+  border: 1px solid #e05257;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+}

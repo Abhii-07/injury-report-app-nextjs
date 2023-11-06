@@ -1,0 +1,29 @@
+/* CSS for the responsive Report component */
+
+.report-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Style for the Search input */
+.ant-input {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Style for the Date Range Picker */
+.ant-picker-range {
+    width: 100%;
+}
+
+/* Style for the Table */
+.ant-table {
+    width: 100%;
+}
+
+/* Style for the Edit Modal */
+.ant-modal {
+    max-width: 1000px;
+}

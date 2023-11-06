@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import { Table, Input, Button, Space, Popconfirm, DatePicker, message, Modal, Form, Input as AntdInput } from 'antd';
+import '../styles/report.css';
 
 const { Search } = Input;
 const { RangePicker } = DatePicker;
@@ -208,7 +209,7 @@ const Report = () => {
     };
 
     return (
-        <>
+        <div className="report-container">
             <Space direction="vertical" style={{ width: '100%' }}>
                 <Search
                     placeholder="Search by reporter's name"
@@ -270,7 +271,7 @@ const Report = () => {
 
 
 
-        </>
+        </div>
     );
 };
 

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Input, DatePicker, Button, List, Space, Card,message } from 'antd';
+import { Input, DatePicker, Button, List, Space, Card, message } from 'antd';
 import axios from 'axios';
+import '../styles/InjuryReportingComponent.css';
+
 
 const { RangePicker } = DatePicker;
 
@@ -35,11 +37,11 @@ const InjuryReportingComponent = () => {
   const handleBodyMapClick = (e) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
+  
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
+    const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+    const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+  
     const newCircle = {
       x,
       y,
@@ -47,12 +49,14 @@ const InjuryReportingComponent = () => {
       label: '',
       description: '',
     };
-
+  
     setCircles([...circles, newCircle]);
-
+  
     // Create a new injury area with default values
     setInjuryAreas([...injuryAreas, { label: `Area ${circles.length + 1}`, location: '', details: '' }]);
   };
+  
+  
 
 
 
@@ -108,8 +112,8 @@ const InjuryReportingComponent = () => {
   
 
   return (
-    <div>
-      <Card title="Create Injury Report" style={{ maxWidth: '1200px' }}>
+    <div className="injury-report-container">
+      <Card title="Create Injury Report" className="report-card">
         <Space direction="vertical">
           <Input
             placeholder="Name of Reporter"
@@ -124,73 +128,63 @@ const InjuryReportingComponent = () => {
             onChange={(dates) => setInjuryDate(dates)}
           />
 
-          <div>
-            <div className="body-map" style={{ position: 'relative', maxWidth: '50%', margin: '0 auto' }}>
-              <img
-                src="/assets/BodyMap.png"
-                alt="Body Map"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                }}
-              />
-              <canvas
-                ref={canvasRef}
-                className="canvas"
-                width={800}
-                height={600}
-                onClick={handleBodyMapClick}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                }}
-              />
-            </div>
+          <div className="body-map-container">
+            <img
+              src="/assets/BodyMap.png"
+              alt="Body Map"
+              className="body-map"
+            />
+            <canvas
+              ref={canvasRef}
+              className="canvas"
+              width={800}
+              height={600}
+              onClick={handleBodyMapClick}
+            />
+          </div>
 
-            <div>
-              <Button type="primary" onClick={() => setInjuryAreas([...injuryAreas, { label: `Area ${circles.length + 1}`, location: '', details: '' }])}>
-                Add Injury Area
-              </Button>
-              <List
-                itemLayout="horizontal"
-                dataSource={injuryAreas}
-                renderItem={(area) => (
-                  <List.Item>
-                    <Space>
-                      <Input
-                        placeholder={`Location for ${area.label}`}
-                        value={area.location || ''}
-                        onChange={(e) => {
-                          const updatedAreas = injuryAreas.map((a) =>
-                            a.label === area.label ? { ...a, location: e.target.value } : a
-                          );
-                          setInjuryAreas(updatedAreas);
-                        }}
-                      />
-                      <Input
-                        placeholder={`Details for ${area.label}`}
-                        value={area.details || ''}
-                        onChange={(e) => {
-                          const updatedAreas = injuryAreas.map((a) =>
-                            a.label === area.label ? { ...a, details: e.target.value } : a
-                          );
-                          setInjuryAreas(updatedAreas);
-                        }}
-                      />
-                      <Button type="danger" onClick={() => removeInjuryArea(area.label)}>
-                        Remove
-                      </Button>
-                    </Space>
-                  </List.Item>
-                )}
-              />
-            </div>
-            <div>
-              <Button type="primary" onClick={saveInjuryReport}>
-                Save Injury Report
-              </Button>
-            </div>
+          <div>
+            <Button type="primary" onClick={() => setInjuryAreas([...injuryAreas, { label: `Area ${circles.length + 1}`, location: '', details: '' }])}>
+              Add Injury Area
+            </Button>
+            <List
+              itemLayout="horizontal"
+              dataSource={injuryAreas}
+              renderItem={(area) => (
+                <List.Item>
+                  <Space>
+                    <Input
+                      placeholder={`Location for ${area.label}`}
+                      value={area.location || ''}
+                      onChange={(e) => {
+                        const updatedAreas = injuryAreas.map((a) =>
+                          a.label === area.label ? { ...a, location: e.target.value } : a
+                        );
+                        setInjuryAreas(updatedAreas);
+                      }}
+                    />
+                    <Input
+                      placeholder={`Details for ${area.label}`}
+                      value={area.details || ''}
+                      onChange={(e) => {
+                        const updatedAreas = injuryAreas.map((a) =>
+                          a.label === area.label ? { ...a, details: e.target.value } : a
+                        );
+                        setInjuryAreas(updatedAreas);
+                      }}
+                    />
+                    <Button type="danger" onClick={() => removeInjuryArea(area.label)}>
+                      Remove
+                    </Button>
+                  </Space>
+                </List.Item>
+              )}
+            />
+          </div>
+          <div>
+            <Button type="primary" onClick={saveInjuryReport}>
+              Save Injury Report
+            </Button>
           </div>
         </Space>
       </Card>
